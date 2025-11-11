@@ -22,5 +22,4 @@ packages/
 _ReSharper*/
 *.DotSettings.user
 
-# 如果有用 User Secrets 或本機設定，可以視情況忽略
 appsettings.*.Local.json
