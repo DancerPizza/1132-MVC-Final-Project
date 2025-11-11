@@ -1,0 +1,41 @@
+﻿@{
+	Layout = "_Layout";
+	ViewData["Title"] = "Index";
+}
+<div class="text-center" style="margin:20rem">
+	<h1 style="color:wheat">
+		S1121768 FinalProject
+	</h1>
+	<h2 style="color:wheat">點Logo回首頁</h2>
+</div>
+
+@section topCSS
+{
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+	<style>
+		table caption {
+			caption-side: top;
+			color: white;
+			background-color: black;
+			text-align: center;
+		}
+
+		/*設定thead顏色*/
+		.table > thead > tr {
+			color: white;
+			background-color: #3176b1;
+		}
+
+		/*設定tfoot顏色及文字對齊*/
+		.table > tfoot > tr {
+			background-color: lightgreen;
+			font-size: large;
+		}
+
+		/*設定文字對齊*/
+		.table > thead > tr > th, .table > tfoot > tr {
+			text-align: center;
+		}
+	</style>
+}

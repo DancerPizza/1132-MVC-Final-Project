@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "管理員登入";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height:60vh;">
+    <div class="Login_card"
+         style="width:500px; margin-top:15rem">
+        <h3 class="mb-5" style="font-weight:bolder; font-size:2rem">管理員登入</h3>
+
+        @using (Html.BeginForm("Login", "Admin", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <!-- 顯示錯誤訊息 -->
+            @if (ViewData.ModelState.Count > 0 && !ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Html.ValidationSummary(false, "", new { @class = "mb-0" })
+                </div>
+            }
+
+            <div class="text-center mb-4">
+                <input name="username"
+                       id="username"
+                       type="text"
+                       class="Login_textbox"
+                       style="text-align: center;"
+                       placeholder="請輸入帳號(1121768)"
+                       required />
+            </div>
+
+            <div class="text-center mb-4">
+                <input name="password"
+                       id="password"
+                       type="password"
+                       class="Login_textbox"
+                       style="text-align: center;"
+                       placeholder="請輸入密碼(0011)"
+                       required />
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="Login_button" style=" vertical-align:central">登入</button>
+            </div>
+        }
+
+        <div class="text-center mt-3">
+            <small class="text-muted">請使用給定帳密登入</small>
+        </div>
+    </div>
+</div>

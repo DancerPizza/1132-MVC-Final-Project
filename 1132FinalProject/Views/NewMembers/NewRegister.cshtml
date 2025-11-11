@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Html
+
+@model _1132FinalProject.Models.NewMembersModel
+@{
+}
+<meta charset="utf-8" />
+<div class="Register">
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            alert('@Html.Raw(TempData["Success"] as string)'); // 跳出註冊成功訊息
+            window.location = '@Url.Action("Index", "Home")';  // 導到首頁
+        </script>
+    }
+
+    @using (Html.BeginForm("NewRegister", "NewMembers", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div style="font-size:3rem; color:white; text-align:center; margin-top:2.5rem">新生登記區</div>
+
+        <div class="Register_textbox">
+            @Html.LabelFor(m => m.StuId)
+            @Html.TextBoxFor(m => m.StuId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.StuId)
+        </div>
+
+        <div class="Register_textbox">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+
+        <div class="Register_textbox">
+            @Html.LabelFor(m => m.NickName)
+            @Html.TextBoxFor(m => m.NickName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.NickName)
+        </div>
+
+        <div class="Register_textbox">
+            @Html.LabelFor(m => m.Department)
+            @Html.TextBoxFor(m => m.Department, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Department)
+        </div>
+
+        <div class="Register_textbox">
+            @Html.LabelFor(m => m.Section)
+            @Html.TextBoxFor(m => m.Section, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Section)
+        </div>
+
+        <div class="Register_textbox">
+            @Html.LabelFor(m => m.IG_Account)
+            @Html.TextBoxFor(m => m.IG_Account, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.IG_Account)
+        </div>
+        <div class="mt-4 text-end">
+            <button type="submit" class="Register_button">送出</button>
+        </div>
+    }
+</div>

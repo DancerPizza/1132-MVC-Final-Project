@@ -1,0 +1,50 @@
+﻿@model _1132FinalProject.Models.NewMembersModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="text-center" style="color:wheat; font-size:20px; margin-top:10rem">
+    <h1 style="font-weight:bold">詳細資料</h1>
+    <hr />
+    <!-- 顯示完整資訊，每個屬性一行 -->
+    <table class="Details_Members">
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.StuId)</th>
+            <td>@Html.DisplayFor(m => m.StuId)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <td>@Html.DisplayFor(m => m.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.NickName)</th>
+            <td>@Html.DisplayFor(m => m.NickName)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Department)</th>
+            <td>@Html.DisplayFor(m => m.Department)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.IG_Account)</th>
+            <td>@Html.DisplayFor(m => m.IG_Account)</td>
+        </tr>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center">
+    <!-- 操作按鈕：編輯和刪除這筆資料，或返回清單 -->
+    <a asp-action="Edit" asp-route-id="@Model.StuId"
+       class="btn btn-warning"
+       style="font-weight:bold; width:93px; margin:15px 5px">編輯</a>
+
+    <a asp-action="Delete" asp-route-id="@Model.StuId"
+       class="btn btn-danger"
+       style="font-weight:bold; width:93px; margin:15px 5px">刪除</a>
+
+    <a asp-action="List"
+       class="btn btn-secondary"
+       style="font-weight:bold; width:93px; margin:15px 5px">返回清單</a>
+</div>

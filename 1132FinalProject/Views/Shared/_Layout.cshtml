@@ -1,0 +1,93 @@
+﻿@using System;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<!--響應式-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+	<title>@ViewData["Title"] - 1132FinalProject</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/_1132FinalProject.styles.css" asp-append-version="true" />
+	@await RenderSectionAsync("topCSS", required: false)
+</head>
+<body class="page-container background-img">
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-light bg-transparent">
+			<div class="container-fluid">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="navbar-brand" asp-controller="Home" asp-action="Index">
+							<img src="~/Images/YZU_Logo.png" style="height: 70px;" />
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Contact" asp-action="ContactCommittee">聯絡幹部</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="NewMembers" asp-action="NewRegister">新生登記表單</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Schedule" asp-action="Schedule">時程表</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Booking" asp-action="BookingSpace">場地租借</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" asp-controller="Admin" asp-action="Login">管理員專區</a>
+						@if (Context.Session.GetString("IsAdmin") == "true") { }
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<main role="main" class="content-wrap">
+		@RenderBody()
+	</main>
+
+	<footer class="site-footer">
+		<div class="container " style="text-align:end; padding: 0 0">
+			<a>
+				⏰ : 
+				<time id="clock"></time>
+			</a>
+		</div>
+	</footer>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	<!--時間顯示器-->
+	<script>
+		function updateTime() {
+			var now = new Date();
+
+			// 格式化時間顯示（24小時制，包含秒數）
+			var timeString = now.toLocaleTimeString('zh-TW', {
+				hour12: true,      // 12小時制
+				hour: '2-digit',    // 兩位數小時
+				minute: '2-digit',  // 兩位數分鐘
+				second: '2-digit'   // 兩位數秒數
+			});
+
+			var clockElement = document.getElementById("clock");
+			if (clockElement) {
+				clockElement.textContent = timeString;
+			}
+		}
+
+		// 頁面載入後更新時間
+		document.addEventListener('DOMContentLoaded', function() {
+			updateTime();
+		});
+
+		// 每秒更新一次
+		setInterval(updateTime, 1000);
+	</script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

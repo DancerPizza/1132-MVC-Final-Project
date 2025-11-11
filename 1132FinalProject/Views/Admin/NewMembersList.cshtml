@@ -1,0 +1,86 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<_1132FinalProject.Models.NewMembersModel>
+
+@{
+    ViewData["Title"] = "NewMembersList";
+}
+@if (TempData["UpdateSuccess"] != null)
+{
+    <script>
+        alert('@Html.Raw(TempData["UpdateSuccess"] as string)'); // 跳出註冊成功訊息
+    </script>
+}
+
+<div>
+    <h1 class="text-center"
+        style="color:wheat; font-size:3rem; margin-top:10rem; font-weight:bold">
+        新生資料表
+    </h1>
+</div>
+<table class="table text-center"
+       style="color:wheat;
+              font-size:18px;
+              border:solid;
+              border-collapse:collapse;
+              margin-top:1.5rem">
+
+    <thead sstyle="border-right:solid">
+        <tr>
+            <th style="border:2px solid wheat; padding:8px;">
+                @Html.DisplayName("姓名")
+            </th>
+            <th style="border:2px solid wheat; padding:8px;">
+                @Html.DisplayName("綽號")
+            </th>
+            <th style="border:2px solid wheat; padding:8px;">
+                @Html.DisplayName("系所")
+            </th>
+            <th style="border:2px solid wheat; padding:8px;">
+                @Html.DisplayName("舞風組別")
+            </th>
+            <th style="border:2px solid wheat; padding:8px;">
+                @Html.DisplayName("IG帳號")
+            </th>
+            <th style="border:2px solid wheat; padding:8px;">
+                @Html.DisplayName("註冊時間")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="border:1px solid wheat; padding:8px;">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td style="border:1px solid wheat; padding:8px;">
+                    @Html.DisplayFor(modelItem => item.NickName)
+                </td>
+                <td style="border:1px solid wheat; padding:8px;">
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td style="border:1px solid wheat; padding:8px;">
+                    @Html.DisplayFor(modelItem => item.Section)
+                </td>
+                <td style="border:1px solid wheat; padding:8px;">
+                    @Html.DisplayFor(modelItem => item.IG_Account)
+                </td>
+                <td style="border:1px solid wheat; padding:8px;">
+                    @Html.DisplayFor(modelItem => item.RegisteredAt)
+                </td>
+                <td style="border:1px solid wheat; padding:8px;">
+                    <a asp-action="Details" asp-route-id="@item.StuId" class="btn btn-success" style="font-weight:bold">詳細</a> |
+                    <a asp-action="Edit" asp-route-id="@item.StuId" class="btn btn-warning" style="font-weight:bold">編輯</a> |
+                    <a asp-action="Delete" asp-route-id="@item.StuId" class="btn btn-danger" style="font-weight:bold">刪除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-center" style="color:white; font-size:1.5rem">
+@Html.PagedListPager(Model, page => Url.Action("List", new { page }))
+</div>
