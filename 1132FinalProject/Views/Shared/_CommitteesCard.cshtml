@@ -4,23 +4,22 @@
 }
 
 <div class="card Committee-card">
-    <img src="/Images/CommitteeCard/@(Model.PhotoUrl.Split('/').Last())" class="Committee-photo" alt="@Model.NickName">
+    <img src="~/Images/CommitteeCard/@Model.PhotoUrl" class="Committee-photo" alt="@Model.NickName">
     <div class="card-body text-center">
         <p class="Committee-Name">@Model.NickName</p>
         <p class="Commitee-Position">@Model.Position</p>
         <p class="Commitee-Section">@Model.Section</p>
         @if (Model.IG_Account == "dancer_pizza")
         {
-            <!--新分頁-->
             <a href="https://www.instagram.com/@Model.IG_Account"
-               target="_blank" 
+               target="_blank"
                rel="noopener noreferrer">
                 @Model.IG_Account
             </a>
         }
         else
         {
-            <p>@Model.IG_Account</p>
+            <p>@("@" + Model.IG_Account)</p>
         }
     </div>
 </div>

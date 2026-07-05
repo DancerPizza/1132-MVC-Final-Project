@@ -2,21 +2,22 @@
 
 @model _1132FinalProject.Models.NewMembersModel
 @{
+    ViewData["Title"] = "新生登記";
 }
-<meta charset="utf-8" />
-<div class="Register">
+
+<div class="register-page">
     @if (TempData["Success"] != null)
     {
         <script>
-            alert('@Html.Raw(TempData["Success"] as string)'); // 跳出註冊成功訊息
-            window.location = '@Url.Action("Index", "Home")';  // 導到首頁
+            alert('@Html.Raw(TempData["Success"] as string)');
+            window.location = '@Url.Action("Index", "Home")';
         </script>
     }
 
     @using (Html.BeginForm("NewRegister", "NewMembers", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
-        <div style="font-size:3rem; color:white; text-align:center; margin-top:2.5rem">新生登記區</div>
+        <div class="page-title">新生登記區</div>
 
         <div class="Register_textbox">
             @Html.LabelFor(m => m.StuId)
@@ -53,7 +54,7 @@
             @Html.TextBoxFor(m => m.IG_Account, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.IG_Account)
         </div>
-        <div class="mt-4 text-end">
+        <div class="mt-4 text-end w-100">
             <button type="submit" class="Register_button">送出</button>
         </div>
     }

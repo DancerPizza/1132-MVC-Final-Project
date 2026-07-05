@@ -23,3 +23,8 @@ _ReSharper*/
 *.DotSettings.user
 
 appsettings.*.Local.json
+
+# Agent / 文件（本機 Cursor 用，不納版控）
+docs/
+.cursor/
+**/new project.md

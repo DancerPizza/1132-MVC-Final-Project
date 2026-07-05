@@ -3,17 +3,22 @@ using _1132FinalProject.Data;
 using _1132FinalProject.Models;
 using X.PagedList;
 using X.PagedList.Extensions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace _1132FinalProject.Controllers
 {
     public class AdminController : Controller
     {
         private readonly CmsContext _context;
-        private const string ADMIN_USER = "1121768";
-        private const string ADMIN_PASS = "0011";
+        private readonly IConfiguration _configuration;
 
-        public AdminController(CmsContext context) => _context = context;
+        public AdminController(CmsContext context, IConfiguration configuration)
+        {
+            _context = context;
+            _configuration = configuration;
+        }
+
+        private bool IsAdminLoggedIn() =>
+            HttpContext.Session.GetString("IsAdmin") == "true";
 
         // GET: /Admin/Login
         [HttpGet]
@@ -26,7 +31,10 @@ namespace _1132FinalProject.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Login(string username, string password)
         {
-            if (username == ADMIN_USER && password == ADMIN_PASS)
+            var adminUser = _configuration["Admin:Username"];
+            var adminPass = _configuration["Admin:Password"];
+
+            if (username == adminUser && password == adminPass)
             {
                 HttpContext.Session.SetString("IsAdmin", "true");
                 return RedirectToAction("List");
@@ -35,21 +43,28 @@ namespace _1132FinalProject.Controllers
             return View();
         }
 
+        // 登出
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Login));
+        }
+
         // 分頁顯示資料
         public IActionResult List(int page = 1, int pageSize = 2)
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
 
             var query = _context.Table_s1121768_NewMembers.OrderBy(m => m.StuId);
-            var paged = query.ToPagedList(page, pageSize);  // IPagedList<NewMembersModel>
-            return View("NewMembersList", paged);                             // 傳給 View 的 Model 必須是 IPagedList<T>
+            var paged = query.ToPagedList(page, pageSize);
+            return View("NewMembersList", paged);
         }
 
         // 詳細資料/{stuId}
         public IActionResult Details(string id)
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
             var m = _context.Table_s1121768_NewMembers.Find(id);
             if (m == null) return NotFound();
@@ -60,16 +75,15 @@ namespace _1132FinalProject.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
             return View();
         }
 
-
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(NewMembersModel m)
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
             if (!ModelState.IsValid) return View(m);
 
@@ -79,13 +93,11 @@ namespace _1132FinalProject.Controllers
             return RedirectToAction("List");
         }
 
-
-
         // GET: 編輯資料/{stuId}
         [HttpGet]
         public IActionResult Edit(string id)
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
             var m = _context.Table_s1121768_NewMembers.Find(id);
 
@@ -96,6 +108,9 @@ namespace _1132FinalProject.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, NewMembersModel m)
         {
+            if (!IsAdminLoggedIn())
+                return RedirectToAction("Login");
+
             if (!ModelState.IsValid)
             {
                 return View(m);
@@ -120,7 +135,7 @@ namespace _1132FinalProject.Controllers
         [HttpGet]
         public IActionResult Delete(string id)
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
             var m = _context.Table_s1121768_NewMembers.Find(id);
             if (m == null) return NotFound();
@@ -130,11 +145,13 @@ namespace _1132FinalProject.Controllers
         [HttpPost, ActionName("Delete"), ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            if (HttpContext.Session.GetString("IsAdmin") != "true")
+            if (!IsAdminLoggedIn())
                 return RedirectToAction("Login");
-            var m = _context.Table_s1121768_NewMembers.Find(id);
-            _context.Table_s1121768_NewMembers.Remove(m);
 
+            var m = _context.Table_s1121768_NewMembers.Find(id);
+            if (m == null) return NotFound();
+
+            _context.Table_s1121768_NewMembers.Remove(m);
             await _context.SaveChangesAsync();
 
             TempData["UpdateSuccess"] = "刪除資料成功！";

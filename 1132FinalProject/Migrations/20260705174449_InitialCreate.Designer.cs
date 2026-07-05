@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _1132FinalProject.Data;
 
@@ -11,9 +12,11 @@ using _1132FinalProject.Data;
 namespace _1132FinalProject.Migrations
 {
     [DbContext(typeof(CmsContext))]
-    partial class CmsContextModelSnapshot : ModelSnapshot
+    [Migration("20260705174449_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,52 +63,52 @@ namespace _1132FinalProject.Migrations
                             CommitteeId = 1181700,
                             IG_Account = "dancer_pizza",
                             NickName = "Pizza",
-                            PhotoUrl = "Spongebob.png",
+                            PhotoUrl = "~/Images/CommitteeCard/Spongebob.png",
                             Position = "教學長",
                             Section = "Locking"
                         },
                         new
                         {
                             CommitteeId = 1181701,
-                            IG_Account = "SquidWard",
+                            IG_Account = "@SquidWard",
                             NickName = "章魚哥",
-                            PhotoUrl = "Squidward.png",
+                            PhotoUrl = "~/Images/CommitteeCard/Squidward.png",
                             Position = "社長",
                             Section = "Locking"
                         },
                         new
                         {
                             CommitteeId = 1181702,
-                            IG_Account = "Sandy",
+                            IG_Account = "@Sandy",
                             NickName = "珊迪",
-                            PhotoUrl = "Sandy.png",
+                            PhotoUrl = "/Images/CommitteeCard/Sandy.png",
                             Position = "教學長",
                             Section = "Jazz"
                         },
                         new
                         {
                             CommitteeId = 1181703,
-                            IG_Account = "Patrick",
+                            IG_Account = "@Patrick",
                             NickName = "派大星",
-                            PhotoUrl = "Patrick.png",
+                            PhotoUrl = "/Images/CommitteeCard/Patrick.png",
                             Position = "活動長",
                             Section = "Popping"
                         },
                         new
                         {
                             CommitteeId = 1181704,
-                            IG_Account = "Plankton",
+                            IG_Account = "@Plankton",
                             NickName = "皮老闆",
-                            PhotoUrl = "Plankton.png",
+                            PhotoUrl = "~/Images/CommitteeCard/Plankton.png",
                             Position = "副社長",
                             Section = "Breaking"
                         },
                         new
                         {
                             CommitteeId = 1181705,
-                            IG_Account = "Mr_Krab",
+                            IG_Account = "@Mr_Krab",
                             NickName = "蟹老闆",
-                            PhotoUrl = "Krab.png",
+                            PhotoUrl = "~/Images/CommitteeCard/Krab.png",
                             Position = "總務長",
                             Section = "hiphop"
                         });

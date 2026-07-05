@@ -49,7 +49,7 @@ namespace _1132FinalProject.Data
                 }
             );
 
-            // 幹部假資料
+            // 幹部假資料（PhotoUrl 僅存檔名；IG_Account 不含 @ 前綴）
             modelBuilder.Entity<ContactCommitteesModel>().HasData(
                 new ContactCommitteesModel
                 {
@@ -58,7 +58,7 @@ namespace _1132FinalProject.Data
                     Position = "教學長",
                     Section = "Locking",
                     IG_Account = "dancer_pizza",
-                    PhotoUrl = "~/Images/CommitteeCard/Spongebob.png"
+                    PhotoUrl = "Spongebob.png"
                 },
                 new ContactCommitteesModel
                 {
@@ -66,8 +66,8 @@ namespace _1132FinalProject.Data
                     NickName = "章魚哥",
                     Position = "社長",
                     Section = "Locking",
-                    IG_Account = "@SquidWard",
-                    PhotoUrl = "~/Images/CommitteeCard/Squidward.png"
+                    IG_Account = "SquidWard",
+                    PhotoUrl = "Squidward.png"
                 },
                 new ContactCommitteesModel
                 {
@@ -75,8 +75,8 @@ namespace _1132FinalProject.Data
                     NickName = "珊迪",
                     Position = "教學長",
                     Section = "Jazz",
-                    IG_Account = "@Sandy",
-                    PhotoUrl = "/Images/CommitteeCard/Sandy.png"
+                    IG_Account = "Sandy",
+                    PhotoUrl = "Sandy.png"
                 },
                 new ContactCommitteesModel
                 {
@@ -84,8 +84,8 @@ namespace _1132FinalProject.Data
                     NickName = "派大星",
                     Position = "活動長",
                     Section = "Popping",
-                    IG_Account = "@Patrick",
-                    PhotoUrl = "/Images/CommitteeCard/Patrick.png"
+                    IG_Account = "Patrick",
+                    PhotoUrl = "Patrick.png"
                 },
                 new ContactCommitteesModel
                 {
@@ -93,8 +93,8 @@ namespace _1132FinalProject.Data
                     NickName = "皮老闆",
                     Position = "副社長",
                     Section = "Breaking",
-                    IG_Account = "@Plankton",
-                    PhotoUrl = "~/Images/CommitteeCard/Plankton.png"
+                    IG_Account = "Plankton",
+                    PhotoUrl = "Plankton.png"
                 },
                 new ContactCommitteesModel
                 {
@@ -102,8 +102,8 @@ namespace _1132FinalProject.Data
                     NickName = "蟹老闆",
                     Position = "總務長",
                     Section = "hiphop",
-                    IG_Account = "@Mr_Krab",
-                    PhotoUrl = "~/Images/CommitteeCard/Krab.png"
+                    IG_Account = "Mr_Krab",
+                    PhotoUrl = "Krab.png"
                 }
             );
         }

@@ -3,48 +3,25 @@
     ViewData["Title"] = "場地租借登記";
 }
 
-
-<div class="d-flex justify-content-center" style="margin-top:10rem; gap:3rem">
-    <div class="venue-reference" style="width:375px;">
-        <div class="text-center" style="color:white; font-size:3rem; margin-bottom:1rem;">場地參考圖</div>
-        <div class="reference-image-container" style="border-radius:10px; padding:0px 20px;">
-            <img src="~/Images/Building_2-Booking.png" alt="場地參考圖" style="width:100%; height:25rem; border-radius:8px; padding:20px" />
+<div class="booking-page">
+    <div class="venue-reference">
+        <div class="page-title">場地參考圖</div>
+        <div class="reference-image-container">
+            <img src="~/Images/Building_2-Booking.png" alt="場地參考圖" />
         </div>
     </div>
 
-    <div class="booking-form" style="width:360px;">
-        <!--BeginForm("actionName", "controllerName", FormMethod.)
-            名稱要扣掉Name
-
-            GET 用於搜尋、查詢等不會改變伺服器狀態
-            POST 用於提交資料，會改變伺服器狀態, 瀏覽器會詢問是否要重新提交表單
-        -->
+    <div class="booking-form">
         @using (Html.BeginForm("BookingSpace", "Booking", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
-            //標題
-            <div class="text-center"
-                 style="font-size:3rem;
-                        color:white;
-                        text-align:center">
-                @ViewData["Title"]
-            </div>
-
-            <!--場地選單
-            Html.DropDownListFor(
-            m => m.Location
-            selectList,          // 選項清單
-            optionLabel,         // 預設提示文字（不會有實際 value）
-            htmlAttributes       // HTML 屬性參數
-            -->
+            <div class="booking-title">@ViewData["Title"]</div>
 
             <div class="form-group mb-4">
                 @Html.LabelFor(m => m.Location)
                 @Html.DropDownListFor(m => m.Location,
                          new SelectList(new[] {
-
-            //Value:實際Location傳入Controller, Text:顯示給使用者看的字
             new { Value = "社課專用大空地", Text = "藍色區" },
             new { Value = "地下室電梯前", Text = "粉色區" },
             new { Value = "教室外空地", Text = "紫色區" },
@@ -61,7 +38,7 @@
                         @class = "form-control",
                         id = "Time",
                         placeholder = "MM/dd HH:mm~HH:mm"
-                    }) <!--提示文字-->
+                    })
             </div>
 
             <div class="form-group mb-4">
@@ -69,16 +46,14 @@
                 @Html.TextBoxFor(m => m.Section, new { @class = "form-control", id = "Section" })
             </div>
 
-            <div class="d-flex justify-content-between">
+            <div class="booking-actions">
                 <button type="button" id="btnSubmit" class="btn btn-primary">登記場地</button>
                 <button type="button" id="btnView" class="btn btn-secondary">查看目前已租借場地</button>
             </div>
         }
-
     </div>
 </div>
 
 @section Scripts {
     <script src="~/js/booking.js"></script>
-        }
-
+}

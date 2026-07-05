@@ -12,8 +12,8 @@ using _1132FinalProject.Data;
 namespace _1132FinalProject.Migrations
 {
     [DbContext(typeof(CmsContext))]
-    [Migration("20251111002528_SeedCommitteeData")]
-    partial class SeedCommitteeData
+    [Migration("20260705175541_UnifyCommitteeSeedData")]
+    partial class UnifyCommitteeSeedData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,52 +63,52 @@ namespace _1132FinalProject.Migrations
                             CommitteeId = 1181700,
                             IG_Account = "dancer_pizza",
                             NickName = "Pizza",
-                            PhotoUrl = "~/Images/CommitteeCard/Spongebob.png",
+                            PhotoUrl = "Spongebob.png",
                             Position = "教學長",
                             Section = "Locking"
                         },
                         new
                         {
                             CommitteeId = 1181701,
-                            IG_Account = "@SquidWard",
+                            IG_Account = "SquidWard",
                             NickName = "章魚哥",
-                            PhotoUrl = "~/Images/CommitteeCard/Squidward.png",
+                            PhotoUrl = "Squidward.png",
                             Position = "社長",
                             Section = "Locking"
                         },
                         new
                         {
                             CommitteeId = 1181702,
-                            IG_Account = "@Sandy",
+                            IG_Account = "Sandy",
                             NickName = "珊迪",
-                            PhotoUrl = "~/Images/CommitteeCard/Sandy.png",
+                            PhotoUrl = "Sandy.png",
                             Position = "教學長",
                             Section = "Jazz"
                         },
                         new
                         {
                             CommitteeId = 1181703,
-                            IG_Account = "@Patrick",
+                            IG_Account = "Patrick",
                             NickName = "派大星",
-                            PhotoUrl = "~/Images/CommitteeCard/Patrick.png",
+                            PhotoUrl = "Patrick.png",
                             Position = "活動長",
                             Section = "Popping"
                         },
                         new
                         {
                             CommitteeId = 1181704,
-                            IG_Account = "@Plankton",
+                            IG_Account = "Plankton",
                             NickName = "皮老闆",
-                            PhotoUrl = "~/Images/CommitteeCard/Plankton.png",
+                            PhotoUrl = "Plankton.png",
                             Position = "副社長",
                             Section = "Breaking"
                         },
                         new
                         {
                             CommitteeId = 1181705,
-                            IG_Account = "@Mr_Krab",
+                            IG_Account = "Mr_Krab",
                             NickName = "蟹老闆",
-                            PhotoUrl = "~/Images/CommitteeCard/Krab.png",
+                            PhotoUrl = "Krab.png",
                             Position = "總務長",
                             Section = "hiphop"
                         });

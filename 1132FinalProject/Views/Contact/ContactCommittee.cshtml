@@ -3,9 +3,9 @@
     ViewData["Title"] = "聯絡幹部";
 }
 
-<div class="d-flex flex-wrap justify-content-center gap-4">
+<div class="committee-grid">
     @foreach (var card in Model)
     {
-        @Html.Partial("_CommitteesCard", card)
+        <partial name="_CommitteesCard" model="card" />
     }
 </div>
